@@ -65,6 +65,13 @@ class Quantile(Postaggregator):
             'type': 'quantile', 'fieldName': name, 'probability': probability}
 
 
+class QuantilesDoublesSketchToQuantiles(Postaggregator):
+    def __init__(self, name, fractions):
+        Postaggregator.__init__(self, None, None, name)
+        self.post_aggregator = {
+            'type': 'quantiles', 'fieldName': name,
+            'fractions': fractions}
+
 class Quantiles(Postaggregator):
     def __init__(self, name, probabilities):
         Postaggregator.__init__(self, None, None, name)
